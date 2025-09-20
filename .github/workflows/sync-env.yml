@@ -1,0 +1,35 @@
+name: Sync Envs to GitHub Secrets
+
+on:
+  push:
+    branches:
+      - main
+      - development
+      - testing
+    paths:
+      - ".env"
+  workflow_dispatch:
+
+jobs:
+  sync-envs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Sync envs to GitHub secrets
+        run: |
+          # This script reads your .env file line by line
+          while IFS='=' read -r key value
+          do
+            # It ignores empty lines and comments (lines starting with #)
+            if [[ ! -z "$key" && ! "$key" =~ ^# ]]; then
+              echo "➡️ Setting secret for '$key'"
+              # This command sets the repository secret using the GitHub CLI
+              gh secret set "$key" --body "$value" --repo $GITHUB_REPOSITORY
+            fi
+          done < .env
+        env:
+          # The GITHUB_TOKEN is automatically provided by GitHub Actions
+          # It grants the necessary permissions to set secrets
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

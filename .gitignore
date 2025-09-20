@@ -1,0 +1,25 @@
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+
+# IDE and OS files
+.idea/
+.vscode/
+*.suo
+*.user
+*.sln
+.DS_Store
+
+# Environment variables
+.env
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+/coverage
