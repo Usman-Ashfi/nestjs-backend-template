@@ -7,7 +7,7 @@ on:
       - development
       - testing
     paths:
-      - ".env"
+      - ".env.example"
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Sync envs to GitHub secrets
         run: |
-          # This script reads your .env file line by line
+          # This script reads your .env.example file line by line
           while IFS='=' read -r key value
           do
             # It ignores empty lines and comments (lines starting with #)
@@ -28,7 +28,7 @@ jobs:
               # This command sets the repository secret using the GitHub CLI
               gh secret set "$key" --body "$value" --repo $GITHUB_REPOSITORY
             fi
-          done < .env
+          done < .env.example
         env:
           # The GITHUB_TOKEN is automatically provided by GitHub Actions
           # It grants the necessary permissions to set secrets
