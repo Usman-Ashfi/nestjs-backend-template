@@ -1,10 +1,10 @@
 {
   "name": "nestjs-backend-template",
   "version": "0.0.1",
-  "description": "NestJS Backend Template with Auto Env Sync",
-  "author": "",
+  "description": "NestJS Backend Template by Usman Ashfaq",
+    "author": "Usman Ashfi <uashfaq48@gmail.com> (https://usmanashfi.com)",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "start": "nest start",
     "start:dev": "nest start --watch",
